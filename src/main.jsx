@@ -1,13 +1,17 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
 import './index.css'
 import App from './App'
 import Body from './components/Body'
 import About from './components/About'
+import ReactDOM from 'react-dom/client'
+import Shimmer from './components/Shimmer'
 import Contact from './components/Contact'
-import Profile from './components/Profile' 
+import Profile from './components/Profile'
+import React, { lazy, Suspense } from 'react'
 import RestaurantMenu from './components/RestaurantMenu'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+
+const Instamart = lazy(() => import("./components/Instamart"));
+// upon On Demand loading > upon render -> Suspense loading 
 
 const mainRouter = createBrowserRouter([
   {
@@ -36,6 +40,14 @@ const mainRouter = createBrowserRouter([
         path: "restaurant/:resId",
         element: <RestaurantMenu />,
       },
+      {
+        path: "/instamart",
+        element: (
+          <Suspense fallback={<Shimmer />}>
+            <Instamart />
+          </Suspense>
+        ),
+      }
     ]
   },
 ])
