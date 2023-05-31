@@ -1,6 +1,6 @@
 import Shimmer from "./Shimmer";
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { filterData } from "../utils/helper";
 import RestaurantCard from "./RestaurantCard";
 import useRestaurantsCard from "../utils/useRestaurantsCard";
@@ -18,24 +18,17 @@ const Body = () => {
             setFilteredRestaurants(allRestaurants);
         }
     }, [allRestaurants, filteredRestaurants]);
-    
-    // const isOnline = useOnline();
-    
-    // if(!isOnline) {
-    //     return <h1>🔴Offline!! Check your internet connection.🔴</h1>
-    // }
 
     // not render compponent (early return)
     if (!allRestaurants) return null;
-
-
-
+ 
     return (allRestaurants.length === 0) ? <Shimmer /> : (
-        <>
-            <div className="search-container">           {/* Search bar */}
+        <div className="bg-[#5D9C59] p-1">
+            
+            <div className="rounded-md w-80 mx-4 my-4 bg-[#C7E8CA]">           {/* Search bar */}
                 <input
                     type="text"
-                    className="search-input"
+                    className="focus:bg-blue-100 p-2 m-2 rounded-md"
                     placeholder="Search"
                     value={searchText}
                     onChange={(e) => {
@@ -43,7 +36,7 @@ const Body = () => {
                     }}
                 />
                 <button
-                    className="search-btn"
+                    className="p-2 m-2 bg-[#DF2E38] hover:bg-gray-500 text-white rounded-md"
                     onClick={() => {
 
                         const newData = filterData(searchText, allRestaurants); // get the filter data for 'filterData' function 
@@ -52,7 +45,7 @@ const Body = () => {
                     }}>Search</button>
             </div>
 
-            <div className='restaurant-list'>           {/* Display bar */}
+            <div className='flex flex-wrap p-4 m-2'>           {/* Display bar */}
 
                 {filteredRestaurants.length === 0 ? <h1>No restaurant found</h1> : filteredRestaurants.map((restaurant) => {
                     return (
@@ -64,7 +57,7 @@ const Body = () => {
                     );
                 })}
             </div>
-        </>
+        </div>
     );
 }
 
