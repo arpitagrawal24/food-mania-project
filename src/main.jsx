@@ -11,6 +11,7 @@ import RestaurantMenu from './components/RestaurantMenu'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 const Instamart = lazy(() => import("./components/Instamart"));
+const Cart = lazy(() => import("./components/Cart"));
 // upon On Demand loading > upon render -> Suspense loading 
 
 const mainRouter = createBrowserRouter([
@@ -24,7 +25,11 @@ const mainRouter = createBrowserRouter([
       },
       {
         path: "about",           // parentPath/{path} -> localhost:5137/about
-        element: <About />,
+        element: (
+          <Suspense fallback={<h1>Loading....</h1>}>
+            <About />
+          </Suspense>
+        ),
         children: [
           {
             path: "profile",          // parentPath/{path} -> localhost:5137/about/profile (gives relative path)
@@ -47,7 +52,15 @@ const mainRouter = createBrowserRouter([
             <Instamart />
           </Suspense>
         ),
-      }
+      },
+      {
+        path: "cart",
+        element: (
+          <Suspense fallback={<Shimmer />}>
+            <Cart />
+          </Suspense>
+        ),
+      },
     ]
   },
 ])

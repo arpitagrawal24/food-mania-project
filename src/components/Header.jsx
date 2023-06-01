@@ -1,5 +1,6 @@
 import Title from "./Title";
 import { Link } from 'react-router-dom'
+import { useSelector } from "react-redux";
 import useOnline from "../utils/useOnline";
 import { useState, useContext } from "react";
 import UserContext from "../utils/UseContext";
@@ -11,6 +12,9 @@ const Header = () => {
 
   const { user } = useContext(UserContext);
 
+  const cartItems = useSelector((store) => store.cart.items);
+  console.log(cartItems);
+
   return (
     <div className="flex justify-between bg-[#C7E8CA] shadow-lg">
 
@@ -18,6 +22,8 @@ const Header = () => {
 
       <div className='nav-item'>
         <ul className="flex py-11 mx-4">
+
+          <li className="px-2">{isOnline ? "✅" : "🔴"}</li>
 
           <li className="px-2">
             <Link to='/'>
@@ -43,7 +49,11 @@ const Header = () => {
             </Link>
           </li>
 
-          <li className="px-2">Cart {isOnline ? "✅" : "🔴"}</li>
+          <li className="px-2">
+            <Link to='/cart'>
+              Cart ( {cartItems.length} )
+            </Link>
+          </li>
 
           <li className="px-2">
             {isLoggedIN ? (

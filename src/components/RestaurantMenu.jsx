@@ -1,5 +1,7 @@
 import Shimmer from "./Shimmer";
 import { IMG_CDN_URL } from "../config";
+import { useDispatch } from "react-redux";
+import { addItem } from "../utils/cartSlice";
 import { useParams } from "react-router-dom";
 import useRestaurant from "../utils/useRestaurant";
 
@@ -9,13 +11,19 @@ const RestaurantMenu = () => {
     const { resId } = useParams();
     const restaurant = useRestaurant(resId);
 
+    const dispatch = useDispatch();
+
+    const addFoodItem = (item) => {
+        dispatch(addItem(item));
+    };
+
     return (!restaurant) ? (
         <Shimmer />
     ) : (
 
         <div className="bg-[#5D9C59] p-1  flex flex-wrap ">
 
-             <div className="p-5 m-5 py-5 font-bold text-xl h-[600px] w-[620px]">       {/* Restaurant Details */}
+            <div className="p-5 m-5 py-5 font-bold text-xl h-[600px] w-[620px]">       {/* Restaurant Details */}
 
                 <h1>{restaurant?.cards[0]?.card?.card?.info?.name} </h1>
                 <h2>Restaurent id : {resId}</h2>
@@ -41,7 +49,20 @@ const RestaurantMenu = () => {
                                     {items?.card?.card?.itemCards && (
                                         <ul className="m-1 p-2 list-disc">
                                             {items.card?.card?.itemCards.map((item, nestedIndex) => (
-                                                <li key={item.card.info.id} className="mx-5 p-2">{item.card.info.name}</li>
+                                                <li
+                                                    key={item.card.info.id}
+                                                    className="mx-5 p-2"
+                                                >
+                                                    <div className="flex justify-between">
+                                                        <span className="font-semibold">{item.card.info.name}</span>
+                                                        <button
+                                                            className="p-1 m-2 border-2 rounded-lg border-black hover:bg-[#C7E8CA]"
+                                                            onClick={() => addFoodItem(item.card.info)}
+                                                        >
+                                                            Add
+                                                        </button>
+                                                    </div>
+                                                </li>
                                             ))}
                                         </ul>
                                     )}
@@ -51,7 +72,7 @@ const RestaurantMenu = () => {
                     }
                 </ul>
             </div>
-            
+
         </div>
     );
 }
