@@ -12,7 +12,7 @@ const Body = () => {
     const [filteredRestaurants, setFilteredRestaurants] = useState([]); // for apply filter on data and change it
 
     const allRestaurants = useRestaurantsCard();        // for base variable
-    
+
     useEffect(() => {
         if (allRestaurants.length > 0 && filteredRestaurants.length === 0) {
             setFilteredRestaurants(allRestaurants);
@@ -21,10 +21,10 @@ const Body = () => {
 
     // not render compponent (early return)
     if (!allRestaurants) return null;
- 
+
     return (allRestaurants.length === 0) ? <Shimmer /> : (
         <div className="bg-[#5D9C59] p-1">
-            
+
             <div className="rounded-md w-80 mx-4 my-4 bg-[#C7E8CA]">           {/* Search bar */}
                 <input
                     type="text"

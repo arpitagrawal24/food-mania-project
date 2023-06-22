@@ -30,16 +30,16 @@ const mainRouter = createBrowserRouter([
             <About />
           </Suspense>
         ),
-        children: [
-          {
-            path: "profile",          // parentPath/{path} -> localhost:5137/about/profile (gives relative path)
-            element: <Profile />,
-          },
-        ],
       },
       {
         path: "contact",
         element: <Contact />,
+        children: [
+          {
+            path: "profile",          // parentPath/{path} -> localhost:5137/contact/profile (gives relative path)
+            element: <Profile />,
+          },
+        ],
       },
       {
         path: "restaurant/:resId",

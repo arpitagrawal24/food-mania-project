@@ -3,7 +3,6 @@ const Footer = () => {
         <div class="bg-white">
             <div class="max-w-screen-xl px-4 py-5 mx-auto space-y-7 overflow-hidden sm:px-6 lg:px-8">
                 <div class="flex justify-center mt-7 space-x-6">
-                    
                     <a
                         href="#"
                         class="text-gray-400 hover:text-gray-500">
@@ -75,7 +74,7 @@ const Footer = () => {
                         </svg>
                     </a>
                     <a
-                        href="https://github.com/arpitagrawal24"
+                        href="#"
                         target="blank"
                         class="text-gray-400 hover:text-gray-500">
                         <span class="sr-only">GitHub</span>

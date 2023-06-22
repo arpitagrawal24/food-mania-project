@@ -42,15 +42,13 @@ const Instamart = () => {
 
     const toggleAccordion = (index) => {
         const updatedAccordionState = Object.fromEntries(
-          Object.entries(accordionState).map(([key, value], i) => [
-            key,
-            i === index ? !value : false,
-          ])
+            Object.entries(accordionState).map(([key, value], i) => [
+                key,
+                i === index ? !value : false,
+            ])
         );
         setAccordionState(updatedAccordionState);
-      };
-      
-
+    };
     return (
         <div className="bg-[#5D9C59] p-2">
             <h1 className="text-3xl p-2 m-2 font-black">Instamart</h1>
