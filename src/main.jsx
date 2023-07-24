@@ -1,27 +1,24 @@
 import './index.css'
 import App from './App'
-import Body from './components/Body'
-import About from './components/About'
+import { Shimmer } from './components'
 import ReactDOM from 'react-dom/client'
-import Shimmer from './components/Shimmer'
-import Contact from './components/Contact'
-import Profile from './components/Profile'
 import React, { lazy, Suspense } from 'react'
-import RestaurantMenu from './components/RestaurantMenu'
+import { About, Contact, Error, Home, RestaurantMenu } from './page'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
-const Instamart = lazy(() => import("./components/Instamart"));
-const Cart = lazy(() => import("./components/Cart"));
+const Cart = lazy(() => import("./page/Cart"));
+const Instamart = lazy(() => import("./page/Instamart"));
 // upon On Demand loading > upon render -> Suspense loading 
 
 const mainRouter = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <Error />,
     children: [
       {
         path: "/",
-        element: <Body />,
+        element: <Home />,
       },
       {
         path: "about",           // parentPath/{path} -> localhost:5137/about
@@ -34,19 +31,13 @@ const mainRouter = createBrowserRouter([
       {
         path: "contact",
         element: <Contact />,
-        children: [
-          {
-            path: "profile",          // parentPath/{path} -> localhost:5137/contact/profile (gives relative path)
-            element: <Profile />,
-          },
-        ],
       },
       {
         path: "restaurant/:resId",
         element: <RestaurantMenu />,
       },
       {
-        path: "/instamart",
+        path: "instamart",
         element: (
           <Suspense fallback={<Shimmer />}>
             <Instamart />
@@ -64,7 +55,6 @@ const mainRouter = createBrowserRouter([
     ]
   },
 ])
-
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

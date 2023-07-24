@@ -1,21 +1,36 @@
+import { dummy } from "../assets/img"
 import { IMG_CDN_URL } from "../config";
-import dummy from "../assets/img/dummy.jpg"
 
 const RestaurantCard = ({
+    id,
     name,
+    area,
     cuisines,
+    avgRating,
+    costForTwoString,
+    cloudinaryImageId,
     lastMileTravelString,
-    cloudinaryImageId
 }) => {
     const imgSrc = cloudinaryImageId ? IMG_CDN_URL + cloudinaryImageId : dummy;
     return (
-        <div className='w-56 h-72 p-2 m-2 shadow-2xl bg-[#DDF7E3] overflow-hidden'>
+        <div className='p-2 m-2 shadow-2xl bg-[#DDF7E3] overflow-hidden hover:scale-105 h-full '>
             <img
                 src={imgSrc}
-                alt="logo" />
-            <h2 className="font-bold text-lg">{name}</h2>
-            <h3>{cuisines.join(", ")}</h3>
-            <h4>{lastMileTravelString} away</h4>
+                alt="logo"
+                className="w-full mob:w-[130px]" />
+
+            <h2 className="font-bold text-lg w-3/5 tracking-normal pl-1">{name.toUpperCase()}</h2>
+
+            <h4 className="text-gray-dark text-xs w-4/5 overflow-hidden ht-[32px] pl-1">{cuisines.join(", ")}</h4>
+
+            <h4 className="text-sm font-medium w-4/5 overflow-hidden h-[20px] pl-1">{area}</h4>
+            <div className="flex mt-4 justify-between items-center text-xs pb-2.5 text-gray-details font-semibold mob:flex-col mob:items-start">
+                <div className="text-gray-dark text-xs w-4/5 overflow-hidden ht-[32px] ">
+                    <h6 className="bg-green-600 w-fit px-[0.125px]">⭐{avgRating}</h6>
+                </div>
+                <h6 className="text-gray-dark text-xs w-4/5 overflow-hidden">{lastMileTravelString}</h6>
+                <h6 className="text-gray-dark text-xs w-4/5 overflow-hidden">{costForTwoString}</h6>
+            </div>
         </div>
     )
 }

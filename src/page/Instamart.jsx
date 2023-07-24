@@ -50,7 +50,7 @@ const Instamart = () => {
         setAccordionState(updatedAccordionState);
     };
     return (
-        <div className="bg-[#5D9C59] p-2">
+        <div className="bg-[#5D9C59] p-2 pt-24">
             <h1 className="text-3xl p-2 m-2 font-black">Instamart</h1>
             <div>
 

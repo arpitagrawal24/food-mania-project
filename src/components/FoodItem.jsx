@@ -1,5 +1,5 @@
+import { dummy } from "../assets/img";
 import { IMG_CDN_URL } from "../config";
-import dummy from "../assets/img/dummy.jpg"
 
 const FoodItem = ({
     id,
@@ -11,16 +11,18 @@ const FoodItem = ({
 }) => {
     const imgSrc = imageId ? IMG_CDN_URL + imageId : dummy;
     return (
-        <div className='w-56 p-2 m-2 shadow-2xl bg-[#DDF7E3]'>
+        <div className='p-2 m-2 shadow-2xl bg-[#DDF7E3] hover:scale-95 h-full'>
             <img
                 src={imgSrc}
-                alt="logo" />
-            <h2 className="font-bold text-lg">{name}</h2>
-            <h3>{description}</h3>
-            <h4 className="font-bold">Price: ₹{price / 100}</h4>
+                alt="logo"
+                className="w-full mob:w-[130px]"
+            />
+            <h2 className="font-bold text-lg w-3/5 tracking-normal pl-1">{name}</h2>
+            <h3 className="text-gray-dark text-xs w-4/5 overflow-hidden ht-[32px] pl-1">{description}</h3>
+            <h4 className="text-sm font-medium w-4/5 overflow-hidden h-[20px] pl-1">Price: ₹{price ? price / 100 : 0}</h4>
             <div className="flex justify-end">
                 <button
-                    className="p-2 border-2 border-black rounded-lg bg-[#DF2E38] hover:bg-gray-500 text-white"
+                    className="p-1 border-2 border-black rounded-lg bg-[#DF2E38] hover:bg-gray-500 hover:scale-x-110 text-white"
                     onClick={() => handleRemoveItem(id)}
                 >
                     Remove

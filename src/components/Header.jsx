@@ -1,71 +1,149 @@
 import Title from "./Title";
-import { Link } from 'react-router-dom'
+import MobileNav from "./MobileNav";
+import { Link } from 'react-router-dom';
 import { useSelector } from "react-redux";
-import useOnline from "../utils/useOnline";
+import {avatar, Logo} from "../assets/img"      
 import { useState, useContext } from "react";
 import UserContext from "../utils/UseContext";
+import { FaShoppingCart } from "react-icons/fa";
+import { RiArrowDropDownLine } from "react-icons/ri";
+import { MdLogin, MdOutlineMenu } from 'react-icons/md';
 
 const Header = () => {
-
-  const [isLoggedIN, SetIsLoogedIN] = useState(false);
-  const isOnline = useOnline();
-
+  const [isLoggedIN, setIsLoggedIn] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenMobileNav, setIsOpenMobileNav] = useState(false);
   const { user } = useContext(UserContext);
-
   const cartItems = useSelector((store) => store.cart.items);
-  console.log(cartItems);
 
   return (
-    <div className="flex justify-between bg-[#C7E8CA] shadow-lg">
 
-      <Title />
+    <header className="w-screen fixed z-50 bg-cardOverlay backdrop-blur-md md:p-3 md:px-4 lg:p-6 lg:px-16">
 
-      <div className='nav-item'>
-        <ul className="flex py-11 mx-4">
+      <div className="hidden md:flex w-full justify-between items-center">                            {/* Nav bar Tablet and Desktop*/}
 
-          <li className="px-2">{isOnline ? "✅" : "🔴"}</li>
+        <Title />                                                                                     {/* Logo */}
 
-          <li className="px-2">
-            <Link to='/'>
-              Home
-            </Link>
-          </li>
+        <div className="flex items-center gap-8">                                                     {/* Nav bar option */}
 
-          <li className="px-2">
-            <Link to='/about'>
-              About
-            </Link>
-          </li>
+          <ul className="flex items-center gap-8">
 
-          <li className="px-2">
-            <Link to='/contact'>
-              Contact
-            </Link>
-          </li>
+            <li className="md:text-sm lg:text-md text-base text-textColor cursor-pointer hover:text-headingColor duration-100 transition-all ease-in-out">
+              <Link to='/'> Home </Link>
+            </li>
 
-          <li className="px-2">
-            <Link to='/instamart'>
-              Instamart
-            </Link>
-          </li>
+            <li className="md:text-sm lg:text-md text-base text-textColor cursor-pointer hover:text-headingColor duration-100 transition-all ease-in-out">
+              <Link to='/instamart'> Instamart </Link>
+            </li>
 
-          <li className="px-2">
-            <Link to='/cart'>
-              Cart ( {cartItems.length} )
-            </Link>
-          </li>
+            <li className="md:text-sm lg:text-md text-base text-textColor cursor-pointer hover:text-headingColor duration-100 transition-all ease-in-out">
+              <Link to='/about'> About Us </Link>
+            </li>
 
-          <li className="px-2">
-            {isLoggedIN ? (
-              <button className="font-bold" onClick={() => SetIsLoogedIN(false)}>{user.name}</button>
-            ) : (
-              <button onClick={() => SetIsLoogedIN(true)}>login</button>
+            <li className="md:text-sm lg:text-md text-base text-textColor cursor-pointer hover:text-headingColor duration-100 transition-all ease-in-out">
+              <Link to='/contact'> Contact Us </Link>
+            </li>
+
+          </ul>
+
+          <Link to='/cart' className="relative flex items-center justify-center text-textColor">      {/* Cart */}
+            <FaShoppingCart className="text-2xl cursor-pointer" />
+            {cartItems && (
+              <div className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-[#DF2E38] bg-opacity-95 flex items-center justify-center cursor-pointer">
+                <p className="text-sm  font-semibold">{cartItems.length}</p>
+              </div>
             )}
-          </li>
-        </ul>
+
+          </Link>
+
+        </div>
+
+        {isLoggedIN ? (                                                                               /* Login button */
+          <div className="group flex items-center gap-3 px-3 py-1 rounded-lg" onClick={() => setIsLoggedIn(false)}>
+
+            <div className="flex items-center justify-center">
+
+              <img
+                src={avatar}
+                alt="profile"
+                className="w-10 min-w-[40px] h-10 min-h-[40px] drop-shadow-2xl rounded-full cursor-pointer object-contain"
+              />
+
+              <p className="text-headingColor cursor-pointer flex items-center justify-center gap-2">
+                <RiArrowDropDownLine />
+              </p>
+
+            </div>
+
+            {/* <DropDown user={user} /> */}
+
+          </div>
+        ) : (
+          <button onClick={() => setIsLoggedIn(true)}>
+            <div className={`flex items-center gap-3 border border-slate-200 px-3 py-1 rounded-lg cursor-pointer`} >
+              <MdLogin />
+              <p className="text-headingColor ">Login</p>
+            </div>
+          </button>
+        )}
+
       </div>
 
-    </div>
+
+      <div className="flex md:hidden w-full p-0 items-center justify-between">              {/* Nav bar Mobile */}
+
+        {isOpenMobileNav ? (
+
+          <MobileNav isOpen={isOpenMobileNav} setIsOpen={setIsOpenMobileNav} />
+
+        ) : (
+          <div className="p-5 flex items-center justify-between w-full">
+
+            <div className=" flex items-center justify-center" onClick={() => setIsOpenMobileNav(!isOpenMobileNav)}>
+
+              <MdOutlineMenu className="text-headingColor text-4xl" />
+
+            </div>
+
+            <Link to={"/"}>
+              <div className="flex items-center gap-2 cursor-pointer">
+
+                <img src={Logo} alt="Logo" className="w-14 object-cover rounded-full" />
+                <p className="text-headingColor text-xl font-bold">
+                  Food Mania
+                </p>
+
+              </div>
+            </Link>
+
+            {isLoggedIN ? (
+              <div className={`flex items-center gap-3 px-3 py-1 rounded-lg relative`} onClick={() => setIsLoggedIn(false)}>
+
+                <div className="group flex items-center justify-center">
+                  <img
+                    src={avatar}
+                    className="w-10 min-w-[40px] h-10 min-h-[40px] drop-shadow-2xl rounded-full cursor-pointer"
+                    alt="user-profile"
+                    onClick={() => setIsOpen(!isOpen)}
+                  />
+                  <p className="text-headingColor cursor-pointer flex items-center justify-center gap-2">
+                    <RiArrowDropDownLine />
+                  </p>
+                  {/* {isOpen && <DropDown user={user} />} */}
+                </div>
+              </div>
+            ) : (
+              <button onClick={() => setIsLoggedIn(true)}>
+                <div className={` flex items-center gap-3 border border-slate-200 px-3 py-1 rounded-lg cursor-pointer`} >
+                  <MdLogin className='text-2xl text-headingColor' />
+                </div>
+              </button>
+            )}
+          </div>
+        )}
+      </div>
+
+    </header>
   );
 }
 
