@@ -2,11 +2,11 @@ import { useState } from "react";
 
 const Section = ({ tile, description, isOpen, toggleprop }) => {
     return (
-        <div className="border-2 border-black  m-2 bg-[#C7E8CA] drop-shadow-xl ">
+        <div className="border-2 border-black  m-2 bg-[#C7E8CA] drop-shadow-xl rounded-3xl ">
             <button onClick={toggleprop}>
-                <h3 className="text-xl font-bold p-2">{tile}</h3>
+                <h3 className="text-xl font-bold m-2 px-3 flex  ">{tile}</h3>
             </button>
-            {isOpen && <p className="p-2">{description}</p>}
+            {isOpen && <p className="m-2 px-3">{description}</p>}
         </div>
     )
 };
