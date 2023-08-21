@@ -12,7 +12,7 @@ export const ShimmerCard = () => {
 const Shimmer = () => {
     return (
         <div className="flex flex-wrap gap-5 justify-center  ">
-            {Array(15)
+            {Array(20)
                 .fill("")
                 .map((e, index) =>
                     <ShimmerCard key={index} />

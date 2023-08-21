@@ -11,11 +11,11 @@ const FoodItem = ({
 }) => {
     const imgSrc = imageId ? IMG_CDN_URL + imageId : dummy;
     return (
-        <div className='p-2 m-2 shadow-2xl bg-[#DDF7E3] hover:scale-95 h-full'>
+        <div className='p-2 m-2 shadow-2xl bg-[#DDF7E3] hover:scale-95 h-full rounded-lg'>
             <img
                 src={imgSrc}
                 alt="logo"
-                className="w-full mob:w-[130px]"
+                className="w-full mob:w-[130px] rounded-md"
             />
             <h2 className="font-bold text-lg w-3/5 tracking-normal pl-1">{name}</h2>
             <h3 className="text-gray-dark text-xs w-4/5 overflow-hidden ht-[32px] pl-1">{description}</h3>

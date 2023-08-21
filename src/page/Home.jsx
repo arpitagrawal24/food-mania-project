@@ -47,8 +47,8 @@ const Home = () => {
             {noResultsFound ? (
                 <div className="m-2 p-2 flex justify-center text-2xl font-extrabold h-40">
                     <div className="flex flex-col text-center">
-                        <h1>No restaurant available now!! </h1>
-                        <h1> Please try again later.</h1>
+                        <h1>No restaurant found!! </h1>
+                        <h1> Search again.</h1>
                     </div>
                 </div>
             ) : allRestaurants?.length === 0 ? (

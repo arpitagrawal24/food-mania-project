@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { FETCH_MENU_URL1, FETCH_MENU_URL2, menudata } from "../../config";
+import { FETCH_MENU_URL1, FETCH_MENU_URL2 } from "../../config";
 
 const useRestaurantMenu = (resId) => {
   const [restaurant, setRestaurant] = useState(null);
@@ -15,7 +15,7 @@ const useRestaurantMenu = (resId) => {
       setRestaurant(json.data);
     } catch (error) {
       console.error("Error fetching data from the proxy server:", error);
-      setRestaurant(menudata[0].data);
+      // setRestaurant(menudata[0].data);
     }
   }
 

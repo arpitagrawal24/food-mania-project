@@ -15,10 +15,12 @@ const RestaurantList = ({ restaurants }) => {
       {restaurants.map((restaurant) => (
         <Link
           className="basis-[290px] p-1 mb-2 mob:basis-[290px]"
-          to={"/restaurant/" + restaurant.data.id}
-          key={restaurant.data.id}
+          to={"/restaurant/" + restaurant.info.id}
+          key={restaurant.info.id}
+
         >
-          <RestaurantCard {...restaurant.data} />
+          <RestaurantCard {...restaurant.info} />
+
         </Link>
       ))}
     </div>
