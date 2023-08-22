@@ -26,7 +26,7 @@ const Login = () => {
         try {
             e.preventDefault();
             const response = await fetch(`${SERVER_URL}login`, {
-                method: "GET",
+                method: "POST",
                 body: JSON.stringify({ email, password }),
                 headers: { "Content-Type": "application/json" },
             });
