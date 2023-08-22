@@ -5,6 +5,8 @@ import ReactDOM from 'react-dom/client'
 import React, { lazy, Suspense } from 'react'
 import { About, Contact, Error, Home, RestaurantMenu } from './page'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import Login from './page/Login'
+import SignUp from './page/SignUp'
 
 const Cart = lazy(() => import("./page/Cart"));
 const Instamart = lazy(() => import("./page/Instamart"));
@@ -51,6 +53,14 @@ const mainRouter = createBrowserRouter([
             <Cart />
           </Suspense>
         ),
+      },
+      {
+        path: "login",
+        element: <Login />,
+      },
+      {
+        path: "signup",
+        element: <SignUp />,
       },
     ]
   },

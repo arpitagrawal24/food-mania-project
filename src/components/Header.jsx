@@ -1,20 +1,33 @@
 import Title from "./Title";
 import MobileNav from "./MobileNav";
 import { Link } from 'react-router-dom';
-import { useSelector } from "react-redux";
-import {avatar, Logo} from "../assets/img"      
-import { useState, useContext } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { avatar, Logo } from "../assets/img"
+import { useState, useContext} from "react";
 import UserContext from "../utils/UseContext";
 import { FaShoppingCart } from "react-icons/fa";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { MdLogin, MdOutlineMenu } from 'react-icons/md';
+import { setLoginStatus } from "../utils/loginSlice";
 
 const Header = () => {
-  const [isLoggedIN, setIsLoggedIn] = useState(false);
+
+
+  const dispatch = useDispatch();
+  const { user } = useContext(UserContext);
+
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenMobileNav, setIsOpenMobileNav] = useState(false);
-  const { user } = useContext(UserContext);
+
   const cartItems = useSelector((store) => store.cart.items);
+  const isLoggedIN = useSelector((store) => store.loginStatus.isLoggedIn);
+
+
+  const handleLogout = () => {
+    localStorage.removeItem('user')
+    dispatch(setLoginStatus(false))
+  }
+
 
   return (
 
@@ -59,7 +72,7 @@ const Header = () => {
         </div>
 
         {isLoggedIN ? (                                                                               /* Login button */
-          <div className="group flex items-center gap-3 px-3 py-1 rounded-lg" onClick={() => setIsLoggedIn(false)}>
+          <div className="group flex items-center gap-3 px-3 py-1 rounded-lg" onClick={handleLogout}>
 
             <div className="flex items-center justify-center">
 
@@ -79,11 +92,14 @@ const Header = () => {
 
           </div>
         ) : (
-          <button onClick={() => setIsLoggedIn(true)}>
-            <div className={`flex items-center gap-3 border border-slate-200 px-3 py-1 rounded-lg cursor-pointer`} >
+          <button>
+            <Link
+              to={"/login"}
+              className="flex items-center gap-3 border border-slate-200 px-3 py-1 rounded-lg cursor-pointer"
+            >
               <MdLogin />
               <p className="text-headingColor ">Login</p>
-            </div>
+            </Link>
           </button>
         )}
 
@@ -117,7 +133,7 @@ const Header = () => {
             </Link>
 
             {isLoggedIN ? (
-              <div className={`flex items-center gap-3 px-3 py-1 rounded-lg relative`} onClick={() => setIsLoggedIn(false)}>
+              <div className={`flex items-center gap-3 px-3 py-1 rounded-lg relative`} onClick={handleLogout}>
 
                 <div className="group flex items-center justify-center">
                   <img
@@ -133,10 +149,13 @@ const Header = () => {
                 </div>
               </div>
             ) : (
-              <button onClick={() => setIsLoggedIn(true)}>
-                <div className={` flex items-center gap-3 border border-slate-200 px-3 py-1 rounded-lg cursor-pointer`} >
+              <button >
+                <Link
+                  to='/login'
+                  className="flex items-center gap-3 border border-slate-200 px-3 py-1 rounded-lg cursor-pointer"
+                >
                   <MdLogin className='text-2xl text-headingColor' />
-                </div>
+                </Link>
               </button>
             )}
           </div>

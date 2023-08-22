@@ -1,7 +1,7 @@
 import { ContactForm, PopUp } from "../components";
 
 import { useState } from "react";
-import {contactimg} from "../assets/img";
+import {contact_img} from "../assets/img";
 
 
 const Contact = () => {
@@ -22,17 +22,14 @@ const Contact = () => {
 
             <div className="flex flex-wrap lg:justify-center mx-4">
 
-                <div className="w-full lg:w-1/2 xl:w-6/12 px-2">    {/* Contact bar */}
-                    <div className="max-w-[570px] mb-12 lg:mb-0">
-                        <span className="block mb-4 text-lg text-primary font-bold">
-                            Contact Us!!
-                        </span>
-                        <h2 className="text-dark mb-6 uppercase font-bold text-[32px] 
+                <div className="w-full lg:w-1/2 xl:w-6/12 px-2 flex flex-col items-center justify-center">    {/* Contact bar */}
+                    <div className="max-w-[570px] mb-12 lg:mb-0 flex flex-col items-center justify-center">
+                        <h2 className="text-dark text-center mb-6 uppercase font-bold text-[32px] 
                             sm:text-[40px] lg:text-[36px] xl:text-[40px]">
                             Get in touch with us
                         </h2>
                         <img
-                            src={contactimg}
+                            src={contact_img}
                             alt="Contact image"
                             className="mb-3 w-96 rounded-lg flex justify-center mx-auto"
                         />
