@@ -1,16 +1,60 @@
-import { ContactForm, PopUp } from "../components";
-
 import { useState } from "react";
-import {contact_img} from "../assets/img";
+import { SERVER_URL } from "../config";
+import { contact_img } from "../assets/img";
+import { ContactForm, PopUp } from "../components";
 
 
 const Contact = () => {
 
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
+    const [message, setMessage] = useState('');
     const [submitted, setSubmitted] = useState(false);
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        setSubmitted(true);
+    const handleNameChange = (e) => {
+        setName(e.target.value);
+    };
+
+    const handleEmailChange = (e) => {
+        setEmail(e.target.value);
+    };
+
+    const handlePhoneChange = (e) => {
+        setPhone(e.target.value);
+    };
+
+    const handleMessageChange = (e) => {
+        setMessage(e.target.value);
+    };
+
+    const handleSubmit = async (e) => {
+        try {
+            e.preventDefault();
+            const response = await fetch(`${SERVER_URL}contact`, {
+                method: "POST",
+                body: JSON.stringify({ name, email, phone, message }),
+                headers: { "Content-Type": "application/json" },
+            });
+
+            const responseData = await response.json();
+            console.log(response)
+
+            if (response.status === 200 && responseData.message === "Contact form submitted successfully.") {
+                setSubmitted(true);
+
+                setName('');
+                setEmail('');
+                setPhone('');
+                setMessage('');
+            }
+            else {
+                alert("Invalid credentials");
+            }
+        } catch (err) {
+            console.log(`Error: ${err}`);
+        }
+
     };
 
     const closePopUp = () => {
@@ -38,7 +82,18 @@ const Contact = () => {
 
                 <div className="w-full lg:w-1/2 xl:w-5/12 px-4">    {/* Contact form */}
                     <div className="bg-white relative rounded-lg p-8 sm:p-12 shadow-lg">
-                        <ContactForm handleSubmit={handleSubmit} />
+                        <ContactForm
+                            handleSubmit={handleSubmit}
+                            handleNameChange={handleNameChange}
+                            handleEmailChange={handleEmailChange}
+                            handlePhoneChange={handlePhoneChange}
+                            handleMessageChange={handleMessageChange}
+                            name={name}
+                            email={email}
+                            phone={phone}
+                            message={message}
+
+                        />
                         {submitted && <PopUp close={closePopUp} />}
                     </div>
                 </div>

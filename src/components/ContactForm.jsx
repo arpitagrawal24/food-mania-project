@@ -1,11 +1,16 @@
-import React, { useState } from 'react'
 
-function ContactForm({ handleSubmit }) {
+function ContactForm({
+     handleSubmit,
+        name,
+        handleNameChange,
+        email,
+        handleEmailChange,
+        phone,
+        handlePhoneChange,
+        message,
+        handleMessageChange,
+     }) {
 
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [phone, setPhone] = useState('');
-    const [message, setMessage] = useState('');
 
     return (
         <form onSubmit={handleSubmit}>
@@ -14,7 +19,7 @@ function ContactForm({ handleSubmit }) {
                     type="text"
                     placeholder="Your Name"
                     value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    onChange={handleNameChange}
                     className="w-full rounded-lg py-3 px-[14px] text-body-color text-base border border-black outline-none focus-visible:shadow-none 
                     focus:border-primary transition hover:bg-gray-300"
                     required
@@ -25,7 +30,7 @@ function ContactForm({ handleSubmit }) {
                     type="email"
                     placeholder="Your Email"
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={handleEmailChange}
                     className="w-full rounded-lg py-3 px-[14px] text-body-color text-base border border-black outline-none focus-visible:shadow-none 
                     focus:border-primary transition hover:bg-gray-300"
                     required
@@ -36,7 +41,7 @@ function ContactForm({ handleSubmit }) {
                     type="text"
                     placeholder="Your Phone"
                     value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
+                    onChange={handlePhoneChange}
                     className="w-full rounded-lg py-3 px-[14px] text-body-color text-base border border-black outline-none focus-visible:shadow-none 
                     focus:border-primary transition hover:bg-gray-300"
                     required
@@ -47,7 +52,7 @@ function ContactForm({ handleSubmit }) {
                     rows="6"
                     placeholder="Your Message"
                     value={message}
-                    onChange={(e) => setMessage(e.target.value)}
+                    onChange={handleMessageChange}
                     className="w-full rounded-lg py-3 px-[14px] text-body-color text-base border border-[f0f0f0] resize-y outline-none focus-visible:shadow-none 
                     focus:border-primary transition hover:bg-gray-300"
                 ></textarea>

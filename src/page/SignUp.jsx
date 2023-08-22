@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import { signup_img } from '../assets/img';
 import { useSelector } from "react-redux";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'
+import { SERVER_URL } from '../config';
 
 const SignUp = () => {
 
@@ -23,8 +24,13 @@ const SignUp = () => {
     const handleSubmit = async (e) => {
         try {
             e.preventDefault();
+
+            if(!name || !email || !password || !confirmPass){
+                alert("Please fill all the fields");
+            }
+
             if (password === confirmPass) {
-                const response = await fetch("http://localhost:3000/signup", {
+                const response = await fetch(`${SERVER_URL}signup`, {
                     method: "POST",
                     body: JSON.stringify({ name, email, password }),
                     headers: {
@@ -134,7 +140,6 @@ const SignUp = () => {
                                 </p>
                             </div>
                         </form>
-                        {/* {submitted && <PopUp close={closePopUp} />} */}
                     </div>
                 </div>
 

@@ -1,12 +1,24 @@
 import { FoodItem } from "../components";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCart, removeItem } from "../utils/cartSlice";
+import { useEffect } from "react";
+import { setLoginStatus } from "../utils/loginSlice";
+import { useNavigate } from "react-router-dom";
+
 
 const Cart = () => {
 
-    const cartItems = useSelector(store => store.cart.items);
-
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const cartItems = useSelector(store => store.cart.items);
+    const isLoggedIN = useSelector((store) => store.loginStatus.isLoggedIn);
+
+    useEffect(() => {
+        if (!isLoggedIN) {
+            navigate("/login");
+        }
+    }, []);
 
     const handleClearCart = () => {
         dispatch(clearCart());

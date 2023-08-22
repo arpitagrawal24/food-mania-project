@@ -1,3 +1,4 @@
+import { SERVER_URL } from '../config';
 import PopUp from '../components/PopUp'
 import { login_img } from '../assets/img';
 import { useEffect, useState } from 'react'
@@ -24,10 +25,10 @@ const Login = () => {
     const handleSubmit = async (e) => {
         try {
             e.preventDefault();
-            const response = await fetch("http://localhost:3000/login", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
+            const response = await fetch(`${SERVER_URL}login`, {
+                method: "GET",
                 body: JSON.stringify({ email, password }),
+                headers: { "Content-Type": "application/json" },
             });
 
             const responseData = await response.json();
@@ -46,10 +47,6 @@ const Login = () => {
             console.log(`Error: ${err}`);
         }
     }
-
-    // const closePopUp = () => {
-    //     setSubmitted(false);
-    // }
 
     return (
         <div className="bg-[#5D9C59] pt-28 pb-20 lg:py-[120px] z-10">
@@ -119,7 +116,6 @@ const Login = () => {
                                 </p>
                             </div>
                         </form>
-                        {/* {submitted && <PopUp close={closePopUp} />} */}
                     </div>
                 </div>
 
