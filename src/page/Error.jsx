@@ -4,7 +4,7 @@ const Error = () => {
     const err = useRouteError();
 
     return (
-        <div className="flex flex-col justify-center h-screen items-center  bg-[#5D9C59] ">
+        <div className="flex flex-col justify-center h-screen items-center">
             <div>
             </div>
             <div className="flex flex-col font-black text-5xl m-2">

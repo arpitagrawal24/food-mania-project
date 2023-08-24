@@ -13,13 +13,13 @@ const MobileNav = ({ isOpen, setIsOpen, }) => {
 
             <div className="flex items-center justify-between w-screen h-24  px-10">
 
-                <div className="relative flex items-center justify-center text-textColor">                      {/* Cart */}
+                <div className="relative flex items-center justify-center text-textColor transition-transform transform hover:scale-110 hover:text-7xl">                      {/* Cart */}
 
                     <Link
                         onClick={() => setIsOpen(!isOpen)}
                         to={'/cart'}
                     >
-                        <FaShoppingCart className="text-4xl cursor-pointer" />
+                        <FaShoppingCart className="text-4xl cursor-pointer " />
                         {cartItems && (
                             <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-[#DF2E38] bg-opacity-95 flex items-center justify-center">
                                 <p className="text-sm text-white font-semibold">
@@ -31,7 +31,7 @@ const MobileNav = ({ isOpen, setIsOpen, }) => {
 
                 </div>
 
-                <div className="relative flex items-center justify-center text-textColor" onClick={() => setIsOpen(!isOpen)}>       {/* Cross  */}
+                <div className="relative flex items-center justify-center text-textColor transition-transform transform hover:scale-110" onClick={() => setIsOpen(!isOpen)}>       {/* Cross  */}
 
                     <MdOutlineRestaurantMenu className="text-headingColor text-4xl" />
 
@@ -39,21 +39,21 @@ const MobileNav = ({ isOpen, setIsOpen, }) => {
 
             </div>
 
-            <div className={`flex items-center justify-center w-full h-72 gap-10 flex-col`}>                                        {/* Nav bar option */}
+            <div className="flex items-center justify-center w-full h-72 gap-10 flex-col">                                        {/* Nav bar option */}
 
-                <Link onClick={() => setIsOpen(!isOpen)} to={'/'} className="text-base text-textColor cursor-pointer hover:text-headingColor duration-100 transition-all ease-in-out px-10">
+                <Link onClick={() => setIsOpen(!isOpen)} to={'/'} className="text-base text-textColor cursor-pointer hover:text-xl px-10">
                     Home
                 </Link>
 
-                <Link onClick={() => setIsOpen(!isOpen)} to={'/instamart'} className="text-base text-textColor cursor-pointer hover:text-headingColor duration-100 transition-all ease-in-out px-10">
+                <Link onClick={() => setIsOpen(!isOpen)} to={'/instamart'} className="text-base text-textColor cursor-pointer hover:text-xl px-10">
                     Instamart
                 </Link>
 
-                <Link onClick={() => setIsOpen(!isOpen)} to={'/about'} className="text-base text-textColor cursor-pointer hover:text-headingColor duration-100 transition-all ease-in-out px-10">
+                <Link onClick={() => setIsOpen(!isOpen)} to={'/about'} className="text-base text-textColor cursor-pointer hover:text-xl px-10">
                     About Us
                 </Link>
 
-                <Link onClick={() => setIsOpen(!isOpen)} to={'/contact'} className="text-base text-textColor cursor-pointer hover:text-headingColor duration-100 transition-all ease-in-out px-10">
+                <Link onClick={() => setIsOpen(!isOpen)} to={'/contact'} className="text-base text-textColor cursor-pointer hover:text-xl px-10">
                     Contact Us
                 </Link>
 
@@ -65,7 +65,7 @@ const MobileNav = ({ isOpen, setIsOpen, }) => {
                 onClick={() => setIsOpen(!isOpen)}
                 className="flex items-center  justify-center w-full"
             >
-                <div className="flex items-center gap-2 cursor-pointer">
+                <div className="flex items-center gap-2 cursor-pointer transition-transform transform hover:scale-110  hover:text-4xl">
                     <img
                         src={Logo}
                         alt="Logo"

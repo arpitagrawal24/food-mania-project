@@ -29,7 +29,7 @@ const Cart = () => {
     };
 
     return (
-        <div className="p-3 inset-0 pt-24 bg-[#5D9C59]">
+        <div className="p-3 inset-0 pt-24 ">
 
             <div className="p-2 m-2 flex justify-between">
                 <h1 className="text-3xl p-2 m-2 font-black">Cart items - {cartItems.length}</h1>

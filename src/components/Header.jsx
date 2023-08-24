@@ -3,7 +3,7 @@ import MobileNav from "./MobileNav";
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { avatar, Logo } from "../assets/img"
-import { useState, useContext} from "react";
+import { useState, useContext } from "react";
 import UserContext from "../utils/UseContext";
 import { FaShoppingCart } from "react-icons/fa";
 import { RiArrowDropDownLine } from "react-icons/ri";
@@ -31,7 +31,7 @@ const Header = () => {
 
   return (
 
-    <header className="w-screen fixed z-50 bg-cardOverlay backdrop-blur-md md:p-3 md:px-4 lg:p-6 lg:px-16">
+    <header className="w-screen fixed z-50 bg-cardOverlay backdrop-blur-md md:p-3 md:px-4 lg:p-6 lg:px-16 ">
 
       <div className="hidden md:flex w-full justify-between items-center">                            {/* Nav bar Tablet and Desktop*/}
 
@@ -41,38 +41,38 @@ const Header = () => {
 
           <ul className="flex items-center gap-8">
 
-            <li className="md:text-sm lg:text-md text-base text-textColor cursor-pointer hover:text-headingColor duration-100 transition-all ease-in-out">
+            <li className="md:text-sm lg:text-md text-base text-textColor cursor-pointer hover:text-xl ">
               <Link to='/'> Home </Link>
             </li>
 
-            <li className="md:text-sm lg:text-md text-base text-textColor cursor-pointer hover:text-headingColor duration-100 transition-all ease-in-out">
+            <li className="md:text-sm lg:text-md text-base text-textColor cursor-pointer hover:text-xl">
               <Link to='/instamart'> Instamart </Link>
             </li>
 
-            <li className="md:text-sm lg:text-md text-base text-textColor cursor-pointer hover:text-headingColor duration-100 transition-all ease-in-out">
+            <li className="md:text-sm lg:text-md text-base text-textColor cursor-pointer hover:text-xl">
               <Link to='/about'> About Us </Link>
             </li>
 
-            <li className="md:text-sm lg:text-md text-base text-textColor cursor-pointer hover:text-headingColor duration-100 transition-all ease-in-out">
+            <li className="md:text-sm lg:text-md text-base text-textColor cursor-pointer hover:text-xl">
               <Link to='/contact'> Contact Us </Link>
             </li>
 
           </ul>
 
-          <Link to='/cart' className="relative flex items-center justify-center text-textColor">      {/* Cart */}
+          <Link to='/cart' className="relative flex items-center justify-center text-textColor transition-transform transform hover:scale-110 hover:text-5xl"> {/* Cart */}
             <FaShoppingCart className="text-2xl cursor-pointer" />
             {cartItems && (
               <div className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-[#DF2E38] bg-opacity-95 flex items-center justify-center cursor-pointer">
-                <p className="text-sm  font-semibold">{cartItems.length}</p>
+                <p className="text-sm font-semibold">{cartItems.length}</p>
               </div>
             )}
-
           </Link>
+
 
         </div>
 
         {isLoggedIN ? (                                                                               /* Login button */
-          <div className="group flex items-center gap-3 px-3 py-1 rounded-lg" onClick={handleLogout}>
+          <div className="group flex items-center gap-3 px-3 py-1 rounded-lg transition-transform transform hover:scale-110" onClick={handleLogout}>
 
             <div className="flex items-center justify-center">
 
@@ -92,10 +92,10 @@ const Header = () => {
 
           </div>
         ) : (
-          <button>
+          <button className="hover:text-xl">
             <Link
               to={"/login"}
-              className="flex items-center gap-3 border border-slate-200 px-3 py-1 rounded-lg cursor-pointer"
+              className="flex items-center gap-3 border border-black px-3 py-1 rounded-lg cursor-pointer hover:bg-blue-100"
             >
               <MdLogin />
               <p className="text-headingColor ">Login</p>
@@ -122,7 +122,7 @@ const Header = () => {
             </div>
 
             <Link to={"/"}>
-              <div className="flex items-center gap-2 cursor-pointer">
+              <div className="flex items-center gap-2 cursor-pointer transition-transform transform hover:scale-110  hover:text-4xl">
 
                 <img src={Logo} alt="Logo" className="w-14 object-cover rounded-full" />
                 <p className="text-headingColor text-xl font-bold">
@@ -133,7 +133,7 @@ const Header = () => {
             </Link>
 
             {isLoggedIN ? (
-              <div className={`flex items-center gap-3 px-3 py-1 rounded-lg relative`} onClick={handleLogout}>
+              <div className="flex items-center gap-3 px-3 py-1 rounded-lg relative transition-transform transform hover:scale-110" onClick={handleLogout}>
 
                 <div className="group flex items-center justify-center">
                   <img
@@ -152,7 +152,7 @@ const Header = () => {
               <button >
                 <Link
                   to='/login'
-                  className="flex items-center gap-3 border border-slate-200 px-3 py-1 rounded-lg cursor-pointer"
+                  className="flex items-center gap-3 border border-black px-3 py-1 rounded-lg cursor-pointer hover:bg-blue-100"
                 >
                   <MdLogin className='text-2xl text-headingColor' />
                 </Link>

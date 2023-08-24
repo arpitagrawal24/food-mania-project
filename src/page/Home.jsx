@@ -35,7 +35,7 @@ const Home = () => {
     if (allRestaurants === 0) return null;                                           // if allRestaurants is empty don't render restaurants cards (early return)
 
     return (
-        <div className="p-3 inset-0 pt-24 bg-[#5D9C59]">
+        <div className="p-3 inset-0 pt-24">
 
             <SearchBar
                 searchText={searchText}

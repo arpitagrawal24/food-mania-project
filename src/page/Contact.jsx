@@ -62,7 +62,7 @@ const Contact = () => {
     };
 
     return (
-        <div className="bg-[#5D9C59] pt-28 pb-20 lg:py-[120px] z-10">
+        <div className="pt-28 pb-20 lg:py-[120px] z-10">
 
             <div className="flex flex-wrap lg:justify-center mx-4">
 

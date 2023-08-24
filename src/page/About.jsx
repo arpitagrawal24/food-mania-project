@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 
 const About = () => {
     return (
-        <div className="bg-[#5D9C59] p-6 pt-24 min-h-[500px]">
+        <div className="p-6 pt-24 min-h-[500px]">
             <div>
                 <h1 className="text-4xl font-bold">About Us</h1>
 

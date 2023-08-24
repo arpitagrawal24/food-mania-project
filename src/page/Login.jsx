@@ -1,5 +1,4 @@
 import { SERVER_URL } from '../config';
-import PopUp from '../components/PopUp'
 import { login_img } from '../assets/img';
 import { useEffect, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom';
@@ -33,6 +32,12 @@ const Login = () => {
 
             const responseData = await response.json();
 
+            if(response.status === 404 && responseData.message === "User not found."){
+                alert("User not found.")
+
+                navigate("/login")
+            }
+
             if (response.status === 200 && responseData.message === "Login successful.") {
                 localStorage.setItem("user", JSON.stringify(responseData.userData))
 
@@ -49,7 +54,7 @@ const Login = () => {
     }
 
     return (
-        <div className="bg-[#5D9C59] pt-28 pb-20 lg:py-[120px] z-10">
+        <div className="pt-28 pb-20 lg:py-[120px] z-10">
 
             <div className="flex flex-wrap lg:justify-center mx-4">
 
@@ -98,7 +103,7 @@ const Login = () => {
                                 <button
                                     type="submit"
                                     onClick={handleSubmit}
-                                    className="w-full bg-blue-800 text-white bg-primary rounded-lg border border-primary p-3 transition hover:bg-opacity-90"
+                                    className="w-full bg-blue-800 text-white bg-primary rounded-lg border border-primary p-3 hover:bg-opacity-90 hover:text-lg"
                                 >
                                     Login
                                 </button>

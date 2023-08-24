@@ -25,7 +25,7 @@ const SignUp = () => {
         try {
             e.preventDefault();
 
-            if(!name || !email || !password || !confirmPass){
+            if (!name || !email || !password || !confirmPass) {
                 alert("Please fill all the fields");
             }
 
@@ -54,7 +54,7 @@ const SignUp = () => {
     }
 
     return (
-        <div className="bg-[#5D9C59] pt-28 pb-20 lg:py-[120px] z-10">
+        <div className="pt-28 pb-20 lg:py-[120px] z-10">
 
             <div className="flex flex-wrap lg:justify-center mx-4">
 
@@ -123,7 +123,7 @@ const SignUp = () => {
                                 <button
                                     type="submit"
                                     onClick={handleSubmit}
-                                    className="w-full bg-blue-800 text-white bg-primary rounded-lg border border-primary p-3 transition hover:bg-opacity-90"
+                                    className="w-full bg-blue-800 text-white bg-primary rounded-lg border border-primary p-3 transition hover:bg-opacity-90 hover:text-lg"
                                 >
                                     Create Account
                                 </button>

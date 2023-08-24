@@ -12,7 +12,7 @@ const SearchBar = ({ searchText, onSearchClick, onChange }) => {
         <div className="flex flex-col items-center m-auto min-w-[300px] sm:min-w-[400px] h-[100px] sm:flex-row sm:justify-center">
             <input
                 type="text"
-                className="p-2 mb-2 text-base rounded-md outline-none basis-[50px] sm:basis-[270px] h-[40px] sm:h-[40px] hover:bg-blue-100 sm:text-xs sm:mb-0 sm:mr-2"
+                className="p-2 mb-2 text-base rounded-md border-2 border-black outline-none basis-[50px] sm:basis-[270px] h-[40px] sm:h-[40px] hover:bg-blue-100 sm:text-xs sm:mb-0 sm:mr-2"
                 placeholder="Search"
                 value={searchText}
                 onChange={onChange}
